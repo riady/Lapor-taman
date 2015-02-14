@@ -1,0 +1,192 @@
+/*
+Theme Name: Worthy - Free Powerful Theme by HtmlCoder
+Author:HtmlCoder
+Author URI:http://www.htmlcoder.me
+Version:1.0.0
+Created:November 2014
+License: Creative Commons Attribution 3.0 License (https://creativecommons.org/licenses/by/3.0/)
+File Description: Place here your custom CSS styles
+*/
+
+.text-colored {
+	color: #73dac5;
+}
+a {
+	color: #73dac5;
+}
+
+.default-bg.blue {
+	background-color: #73dac5;
+}
+
+.btn-default {
+	color: #73dac5;
+	border: 1px solid #cccccc;
+}
+
+.panel-heading a {
+	font-weight: 400;
+	padding: 12px 35px 12px 15px;
+	display: inline-block;
+	width: 100%;
+	background-color: #73dac5;
+	color: #ffffff;
+	position: relative;
+	text-decoration: none;
+}
+
+.panel-heading a:hover {
+	text-decoration: none;
+	background-color: #73dac5;
+	color: #ffffff;
+}
+
+.nav-pills > li > a:hover {
+	background-color: #73dac5;
+	border-color: #73dac5;
+	color: #ffffff;
+}
+
+.modal-header {
+	background-color: #73dac5;
+	color: #ffffff;
+}
+
+.main-navigation .navbar-default .navbar-nav > li.active > a {
+	background-color: transparent;
+	color: #73dac5;
+}
+.main-navigation .navbar-default .navbar-nav > li > a:hover,
+.main-navigation .navbar-default .navbar-nav > li.active > a:hover {
+	color: #73dac5;
+}
+
+.social-links li.twitter a:hover {
+	color: #73dac5;
+}
+
+h1 span,
+h2 span,
+h3 span,
+h4 span {
+	color: #73dac5;
+}
+
+a:hover {
+	color: #73dac5;
+}
+
+.btn-default:hover {
+	color: #ffffff;
+	background-color: #73dac5;
+	border-color: #73dac5;
+}
+
+.section.footer {
+	background-color: #73dac5;
+}
+
+.btn.btn-default {
+	background-color: #3f4645;
+	vertical-align: middle;
+	/*margin-left: auto;
+	margin-right: auto;*/
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	margin-left: 320px;
+}
+
+.form-control {
+	color: #999999;
+	border-radius: 0px;
+}
+
+.footer-content {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.has-feedback select {
+	border-radius: 0px;
+}
+
+.form-control.login {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.btn.btn-default.login {
+	margin-left: 280px;
+	margin-top: 30px;
+}
+
+.header.admin.fixed.clearfix.navbar.navbar-fixed-top {
+	color: #ffffff;
+	background-color: #000000;
+	padding: 0px 0;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.title.admin {
+	margin-top: 50px;
+}
+
+.btn.btn-default.lihat {
+	margin-left: 44%;
+	margin-top: 30px;
+}
+
+th {
+	background-color: #999999;
+	text-align: center;
+	color: #ffffff;
+}
+
+td {
+	text-align: center;
+}
+
+.btn.btn-default.hapus {
+	margin-left: 35%;
+	margin-top: 30px;
+}
+
+.btn.btn-default.tambah {
+	margin-left: 30px;
+	margin-top: 30px;
+	background-color: #73dac5;
+	color: #999999;
+}
+
+.btn.btn-default.tambah:hover {
+	margin-left: 30px;
+	margin-top: 30px;
+	background-color: #73dac5;
+	color: #ffffff;
+}
+
+.btn.btn-default.lapor {
+	background-color: #73dac5;
+	color: #999999;
+	margin-left: 10px;
+}
+
+.btn.btn-default.lapor:hover {
+	background-color: #73dac5;
+	color: #ffffff;
+	margin-left: 10px;
+}
+
+.form-control.select {
+	height: 36px;
+}
