@@ -160,29 +160,31 @@
 												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
 												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
+														<form method="post" action="sentemail.php">
 													    <div class="modal-content">
 													      	<div class="modal-header">
 													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
 													      	</div>
 													      	<div class="modal-body">
-													        <form>
+													        
 													          	<div class="form-group">
 													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
+													            	<input type="text" class="form-control" id="email" name="email">
 													         	</div>
 													         	<div class="form-group">
 													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
+													            	<input type="text" class="form-control" id="subjek" name="subjek">
 													          	</div>
 													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        </form>
+													        
 													      	</div>
 													      	<div class="modal-footer">
 													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<button type="button" class="btn btn-default">Kirim</button>
+													        	<input type="submit" class="btn btn-default" value="Kirim">
 													      	</div>
 													    </div>
+														</form>
 													</div>
 												</div>
 											</td>
@@ -249,6 +251,7 @@
 												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 													    <div class="modal-content">
+														
 													      	<div class="modal-header">
 													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
