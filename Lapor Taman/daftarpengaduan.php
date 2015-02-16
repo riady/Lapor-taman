@@ -160,7 +160,7 @@
 										if ($tp2>0){
 											while($res = $result->fetch_array(MYSQLI_ASSOC)){ ?>
 											<tr>
-											<?php $date=strtotime("now"); ?>
+											<?php $date=strtotime($res['tanggal']); ?>
 											<td><?php echo "".date('j',$date)." ".$bulan[date('n',$date)-1]." ".date('Y',$date); ?></td>
 											<td><?php echo $res['nama_pengadu']; ?></td>
 											<td><?php echo $res['email_pengadu']; ?></td>
