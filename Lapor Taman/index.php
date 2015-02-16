@@ -262,20 +262,23 @@
 									<div class="form-group has-feedback">
 										<label class="sr-only" for="taman">Taman</label>
 										<select class="form-control" name="taman2">
-											<option>Taman A</option>
-											<option>Taman B</option>
-											<option>Taman C</option>
-											<option>Taman D</option>
+											<?php
+												$listTaman = mysqli_query($con, "SELECT * FROM t_taman");
+												while ($taman = mysqli_fetch_assoc($listTaman)) {
+													echo "<option value = ".$taman['id_taman'].">";
+													echo $taman['nama'];
+													echo "</option>";
+												}
+											?>
 										<i class="fa fa-toggle-down form-control-feedback"></i>
 										</select>
 									</div>
 									<div class="form-group has-feedback">
 										<label class="sr-only" for="kategori">Kategori</label>
 										<select class="form-control" name="kategori2">
-											<option>Kategori A</option>
-											<option>Kategori B</option>
-											<option>Kategori C</option>
-											<option>Kategori D</option>
+											<option value="0">Kategori Kebersihan</option>
+											<option value="1">Kategori Fasilitas</option>
+											<option value="2">Kategori Kategori Keamanan</option>
 										</select>										
 									</div>
 									<div class="form-group has-feedback">
@@ -284,7 +287,7 @@
 										<i class="fa fa-pencil form-control-feedback"></i>
 									</div>
 									<div class="text-center">
-										<input type="submit" value="Kirim" class="btn btn-default">
+										<input type="submit" value="Kirim" class="btn btn-default" onclick="submitSuccess()">
 									</div>
 								</form>
 							</div>
@@ -312,6 +315,13 @@
 		<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 		<!-- Jquery and Bootstap core js files -->
+		<script type="text/javascript">
+			function submitSuccess() {
+				alert("Aduan anda berhasil disimpan");
+				return true;
+			}
+
+		</script>
 		<script type="text/javascript" src="plugins/jquery.min.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
