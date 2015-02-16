@@ -133,11 +133,12 @@
 						$db_user="root";
 						$db_pass="";
 						$db_name="lapor_tamanbdg";
+						$kateg=["Kebersihan","Kerusakan Fasilitas","Keamanan"];
 						$db = new mysqli($db_loc,$db_user,$db_pass,$db_name);
 						if (mysqli_connect_errno()){
 							echo "Failed to connect to MySQL: " . mysqli_connect_error();
 						}
-						$result = $db->query("SELECT * FROM t_adu;");
+						$result = $db->query("SELECT A.*, B.nama FROM `t_adu`  as A JOIN `t_taman` as B on A.id_mengenai=B.id_taman;");
 						$tp2=mysqli_num_rows($result);
 						?>
 						<div class="row">
@@ -160,23 +161,24 @@
 											<tr>
 											<td>N/A</td>
 											<td><?php echo $res['nama_pengadu']; ?></td>
-											<td><?php echo $res['email_pengadu']; ?></td>
-											<td><?php echo "Taman"; ?></td>
-											<td><?php echo $res['kategori']; ?></td>
-											<td><?php echo $res['konten']; ?></td>
+											<td><?php echo mb_strimwidth($res['email_pengadu'],0,25,"&hellip;"); ?></td>
+											<td><?php echo $res['nama']; ?></td>
+											<td><?php echo $kateg[$res['kategori']-1]; ?></td>
+											<td><?php echo mb_strimwidth($res['konten'],0,100,"&hellip;"); ?></td>
 											<td>
 												<select class="form-control select">
-													<option <?php echo $res['status']==0?"selected":""; ?>>Pending</option>
-													<option <?php echo $res['status']==1?"selected":""; ?>>Diproses</option>
-													<option <?php echo $res['status']==2?"selected":""; ?>>Selesai</option>
+													<option <?php echo $res['status']==0?"selected":""; ?>>Belum Verifikasi</option>
+													<option <?php echo $res['status']==1?"selected":""; ?>>Pending</option>
+													<option <?php echo $res['status']==2?"selected":""; ?>>Diproses</option>
+													<option <?php echo $res['status']==3?"selected":""; ?>>Selesai</option>
 												</select>
 											</td>
 											<td>
 												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
 												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
-														<form method="post" action="sentemail.php">
-													    <div class="modal-content">
+													    <form>
+														<div class="modal-content">
 													      	<div class="modal-header">
 													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
@@ -184,19 +186,23 @@
 													      	<div class="modal-body">
 													        
 													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="email" name="email">
+													            	<label for="recipient-name" class="control-label">Pilih Instansi:</label>
+													            	<select type="text" class="form-control" id="instansi">
+													            		<option>Instansi A</option>
+													            		<option>Instansi B</option>
+													            		<option>Instansi C</option>
+													            	</select>
 													         	</div>
 													         	<div class="form-group">
 													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="subjek" name="subjek">
+													            	<input type="text" class="form-control" id="subjek">
 													          	</div>
 													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
 													        
 													      	</div>
 													      	<div class="modal-footer">
 													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<input type="submit" class="btn btn-default" value="Kirim">
+													        	<button type="button" class="btn btn-default">Kirim</button>
 													      	</div>
 													    </div>
 														</form>
@@ -213,187 +219,8 @@
 											<td>N/A</td>
 											<td>N/A</td>
 											<td>Belum ada pengaduan</td>
-											<td>N/A<!--status--></td>
+											<td>N/A</td>
 										<?php } ?>
-											<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia</td>
-											<td>fannyaulia@gmail.com</td>
-											<td>Jomblo</td>
-											<td>Kebersihan</td>
-											<td>Banyak sampah plastik berserakan</td>
-											<td>
-												<select class="form-control select">
-											  		<option>Pending</option>
-											  		<option selected>Diproses</option>
-											  		<option>Selesai</option>
-												</select>
-											</td>
-											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-														<form method="post" action="sentemail.php">
-													    <div class="modal-content">
-													      	<div class="modal-header">
-													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
-													      	</div>
-													      	<div class="modal-body">
-													        
-													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="email" name="email">
-													         	</div>
-													         	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="subjek" name="subjek">
-													          	</div>
-													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        
-													      	</div>
-													      	<div class="modal-footer">
-													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<input type="submit" class="btn btn-default" value="Kirim">
-													      	</div>
-													    </div>
-														</form>
-													</div>
-												</div>
-											</td>
-											<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia</td>
-											<td>fannyaulia@gmail.com</td>
-											<td>Jomblo</td>
-											<td>Kebersihan</td>
-											<td>Banyak sampah plastik berserakan</td>
-											<td>
-												<select class="form-control select">
-											  		<option>Pending</option>
-											  		<option>Diproses</option>
-											  		<option>Selesai</option>
-												</select>
-											</td>
-											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-													    <div class="modal-content">
-													      	<div class="modal-header">
-													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
-													      	</div>
-													      	<div class="modal-body">
-													        <form>
-													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													         	</div>
-													         	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													          	</div>
-													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        </form>
-													      	</div>
-													      	<div class="modal-footer">
-													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<button type="button" class="btn btn-default">Kirim</button>
-													      	</div>
-													    </div>
-													</div>
-												</div>
-											</td>
-											<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia</td>
-											<td>fannyaulia@gmail.com</td>
-											<td>Jomblo</td>
-											<td>Kebersihan</td>
-											<td>Banyak sampah plastik berserakan</td>
-											<td>
-												<select class="form-control select">
-											  		<option>Pending</option>
-											  		<option>Diproses</option>
-											  		<option>Selesai</option>
-												</select>
-											</td>
-											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-													    <div class="modal-content">
-														
-													      	<div class="modal-header">
-													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
-													      	</div>
-													      	<div class="modal-body">
-													        <form>
-													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													         	</div>
-													         	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													          	</div>
-													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        </form>
-													      	</div>
-													      	<div class="modal-footer">
-													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<button type="button" class="btn btn-default">Kirim</button>
-													      	</div>
-													    </div>
-													</div>
-												</div>
-											</td>
-											<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia</td>
-											<td>fannyaulia@gmail.com</td>
-											<td>Jomblo</td>
-											<td>Kebersihan</td>
-											<td>Banyak sampah plastik berserakan</td>
-											<td>
-												<select class="form-control select">
-											  		<option>Pending</option>
-											  		<option>Diproses</option>
-											  		<option>Selesai</option>
-												</select>
-											</td>
-											<td>-->
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-													    <div class="modal-content">
-													      	<div class="modal-header">
-													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
-													      	</div>
-													      	<div class="modal-body">
-													        <form>
-													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													         	</div>
-													         	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													          	</div>
-													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        </form>
-													      	</div>
-													      	<div class="modal-footer">
-													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<button type="button" class="btn btn-default">Kirim</button>
-													      	</div>
-													    </div>
-													</div>
-												</div>
-											</td>
 										</tr>
 									</table>
 								</div>
