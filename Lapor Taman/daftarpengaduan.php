@@ -134,6 +134,7 @@
 						$db_pass="";
 						$db_name="lapor_tamanbdg";
 						$kateg=["Kebersihan","Kerusakan Fasilitas","Keamanan"];
+						$bulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
 						$db = new mysqli($db_loc,$db_user,$db_pass,$db_name);
 						if (mysqli_connect_errno()){
 							echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -159,12 +160,13 @@
 										if ($tp2>0){
 											while($res = $result->fetch_array(MYSQLI_ASSOC)){ ?>
 											<tr>
-											<td>N/A</td>
+											<?php $date=strtotime("now"); ?>
+											<td><?php echo "".date('j',$date)." ".$bulan[date('n',$date)-1]." ".date('Y',$date); ?></td>
 											<td><?php echo $res['nama_pengadu']; ?></td>
-											<td><?php echo mb_strimwidth($res['email_pengadu'],0,25,"&hellip;"); ?></td>
+											<td><?php echo $res['email_pengadu']; ?></td>
 											<td><?php echo $res['nama']; ?></td>
 											<td><?php echo $kateg[$res['kategori']-1]; ?></td>
-											<td><?php echo mb_strimwidth($res['konten'],0,100,"&hellip;"); ?></td>
+											<td><?php echo mb_strimwidth($res['konten'],0,50,"&hellip;"); ?></td>
 											<td>
 												<select class="form-control select">
 													<option <?php echo $res['status']==0?"selected":""; ?>>Belum Verifikasi</option>
@@ -174,38 +176,52 @@
 												</select>
 											</td>
 											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#laporModal<?php echo $res['id_pengaduan']; ?>" data-whatever="">Lapor</button>
+												<button type="button" class="btn btn-default detail" data-toggle="modal" data-target="#detailModal<?php echo $res['id_pengaduan']; ?>" data-whatever="">Detail</button>
+												<div class="modal fade" id="laporModal<?php echo $res['id_pengaduan']; ?>" tabindex="-1" role="dialog" aria-labelledby="laporModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
-													    <form>
-														<div class="modal-content">
+													    <div class="modal-content">
 													      	<div class="modal-header">
 													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
+													        	<h4 class="modal-title" id="laporModalLabel">Kirim Email Laporan</h4>
 													      	</div>
 													      	<div class="modal-body">
-													        
+													        <form>
 													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Pilih Instansi:</label>
-													            	<select type="text" class="form-control" id="instansi">
-													            		<option>Instansi A</option>
-													            		<option>Instansi B</option>
-													            		<option>Instansi C</option>
-													            	</select>
+													            	<label for="recipient-name" class="control-label">Email:</label>
+													            	<input type="text" class="form-control" id="recipient-name">
 													         	</div>
 													         	<div class="form-group">
 													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="subjek">
+													            	<input type="text" class="form-control" id="recipient-name">
 													          	</div>
 													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        
+													        </form>
 													      	</div>
 													      	<div class="modal-footer">
 													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
 													        	<button type="button" class="btn btn-default">Kirim</button>
 													      	</div>
 													    </div>
-														</form>
+													</div>
+												</div>
+												<div class="modal fade" id="detailModal<?php echo $res['id_pengaduan']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+													<div class="modal-dialog">
+													    <div class="modal-content">
+													      	<div class="modal-header">
+													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													        	<h4 class="modal-title" id="detailModalLabel">Detail Pengaduan</h4>
+													      	</div>
+													      	<div class="modal-body">
+													        <form>
+													          	<!-- <p><?php echo $res['email_pengadu']; ?></p>-->
+													          	<p><?php echo $res['konten']; ?></p>
+													          	<div class="modal-footer">
+													        		<button type="button" class="btn btn-default batal" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
+													      		</div>
+													        </form>
+													      	</div>
+													    </div>
 													</div>
 												</div>
 											</td>
