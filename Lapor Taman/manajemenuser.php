@@ -387,6 +387,7 @@
 									<h4 class="modal-title" id="edit-tamanModalLabel">Edit User</h4>
 								</div>
 								<div class="modal-body">
+									<input type="hidden" id="id_taman" name="id_taman" value="<?php echo $idtaman; ?>">
 									<div class="form-group">
 										<label for="nama-taman" class="control-label">Nama:</label>
 										<input type="text" class="form-control" id="nama-taman"  name="namataman" value="<?php echo $namatmn; ?>">
