@@ -5,8 +5,8 @@
 	require_once '/Swift-5.1.0/lib/swift_required.php';
 	// Create the Transport
 	$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl");
-	$transport->setUsername('13512024@std.stei.itb.ac.id');
-	$transport->setPassword('K@l3nd3r');
+	$transport->setUsername('vladsaurus@gmail.com');
+	$transport->setPassword('telurarab');
 
 	/*
 	You could alternatively use a different transport such as Sendmail or Mail:
