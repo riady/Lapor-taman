@@ -98,6 +98,8 @@
 												<li><a href="notifikasi.html">Notifikasi</a></li>
 												<li class="active"><a href="daftarpengaduan.html">Daftar Pengaduan</a></li>
 												<li><a href="manajemenuser.html">Manajemen User</a></li>
+												<li class="active"><a href="daftarpengaduan.php">Daftar Pengaduan</a></li>
+												<li><a href="manajemenuser.php">Manajemen User</a></li>
 												<li><a href="berita.html">Berita</a></li>
 												<li><a href="index-admin.html">Logout</a></li>
 											</ul>
