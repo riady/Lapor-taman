@@ -241,48 +241,52 @@
 					</div>
 					<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
+					  <form method="post" onsubmit="return validate();" action="add_user.php">
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					        <h4 class="modal-title" id="tambahModalLabel">Tambah User</h4>
 					      </div>
+						  
 					      <div class="modal-body">
-					        <form>
+					        
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Nama:</label>
-					            	<input type="text" class="form-control" id="recipient-name">
+					            	<input type="text" class="form-control" id="nama">
 					         	</div>
 					         	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Username:</label>
-					            	<input type="text" class="form-control" id="recipient-name">
+					            	<input type="text" class="form-control" id="username">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Password:</label>
-					            	<input type="text" class="form-control" id="recipient-name">
+					            	<input type="text" class="form-control" id="password">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Ulangi Password:</label>
-					            	<input type="text" class="form-control" id="recipient-name">
+					            	<input type="text" class="form-control" id="passwordrep">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Alamat:</label>
-					            	<input type="text" class="form-control" id="recipient-name">
+					            	<input type="text" class="form-control" id="alamat">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Email:</label>
-					            	<input type="text" class="form-control" id="recipient-name">
+					            	<input type="text" class="form-control" id="email">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Telpon:</label>
-					            	<input type="text" class="form-control" id="recipient-name">
+					            	<input type="text" class="form-control" id="telpon">
 					          	</div>
-					        </form>
+					        
 					      </div>
+						  
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
-					        <button type="button" class="btn btn-default">Simpan</button>
+					        <input type="submit" class="btn btn-default" value="Simpan">
 					      </div>
 					    </div>
+						</form>
 					  </div>
 					</div>
 				</div>
@@ -502,6 +506,14 @@
 		  	modal.find('.modal-body input').val()
 		})
 		</script>
-
+		<script>
+		function validate(){
+			var valid = true;
+			var password = document.getElementById('password').value;
+			var passwordrep = document.getElementById('passwordrep').value;
+			valid = (password==passwordrep)
+			return valid;
+		}
+		</script>
 	</body>
 </html>
