@@ -136,8 +136,8 @@
 											<th>Email</th>
 											<th>Taman</th>
 											<th>Kategori</th>
-											<th>Pengaduan</th>
-											<th>Status</th>
+											<th style="width:25%;">Pengaduan</th>
+											<th style="width:10%;">Status</th>
 											<th></th>
 										</tr>
 										<tr>
@@ -146,7 +146,7 @@
 											<td>fannyaulia@gmail.com</td>
 											<td>Jomblo</td>
 											<td>Kebersihan</td>
-											<td>Banyak sampah plastik berserakan</td>
+											<td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
 											<td>
 												<select class="form-control select">
 											  		<option>Pending</option>
@@ -155,40 +155,8 @@
 												</select>
 											</td>
 											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-													    <form>
-														<div class="modal-content">
-													      	<div class="modal-header">
-													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
-													      	</div>
-													      	<div class="modal-body">
-													        
-													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Pilih Instansi:</label>
-													            	<select type="text" class="form-control" id="instansi">
-													            		<option>Instansi A</option>
-													            		<option>Instansi B</option>
-													            		<option>Instansi C</option>
-													            	</select>
-													         	</div>
-													         	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="subjek">
-													          	</div>
-													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        
-													      	</div>
-													      	<div class="modal-footer">
-													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<button type="button" class="btn btn-default">Kirim</button>
-													      	</div>
-													    </div>
-														</form>
-													</div>
-												</div>
+												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#laporModal" data-whatever="">Lapor</button>
+												<button type="button" class="btn btn-default detail" data-toggle="modal" data-target="#detailModal" data-whatever="">Detail</button>
 											</td>
 											<tr>
 											<td>17 Februari 2015</td>
@@ -205,13 +173,50 @@
 												</select>
 											</td>
 											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#laporModal" data-whatever="">Lapor</button>
+												<button type="button" class="btn btn-default detail" data-toggle="modal" data-target="#detailModal" data-whatever="">Detail</button>
+											</td>
+											<tr>
+											<td>17 Februari 2015</td>
+											<td>Fanny Aulia</td>
+											<td>fannyaulia@gmail.com</td>
+											<td>Jomblo</td>
+											<td>Kebersihan</td>
+											<td>Banyak sampah plastik berserakan</td>
+											<td>
+												<select class="form-control select">
+											  		<option>Pending</option>
+											  		<option>Diproses</option>
+											  		<option>Selesai</option>
+												</select>
+											</td>
+											<td>
+												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#laporModal" data-whatever="">Lapor</button>
+												<button type="button" class="btn btn-default detail" data-toggle="modal" data-target="#detailModal" data-whatever="">Detail</button>
+											</td>
+											<tr>
+											<td>17 Februari 2015</td>
+											<td>Fanny Aulia</td>
+											<td>fannyaulia@gmail.com</td>
+											<td>Jomblo</td>
+											<td>Kebersihan</td>
+											<td>Banyak sampah plastik berserakan</td>
+											<td>
+												<select class="form-control select">
+											  		<option>Pending</option>
+											  		<option>Diproses</option>
+											  		<option>Selesai</option>
+												</select>
+											</td>
+											<td>
+												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#laporModal" data-whatever="">Lapor</button>
+												<button type="button" class="btn btn-default detail" data-toggle="modal" data-target="#detailModal" data-whatever="">Detail</button>
+												<div class="modal fade" id="laporModal" tabindex="-1" role="dialog" aria-labelledby="laporModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 													    <div class="modal-content">
 													      	<div class="modal-header">
 													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
+													        	<h4 class="modal-title" id="laporModalLabel">Tambah User</h4>
 													      	</div>
 													      	<div class="modal-body">
 													        <form>
@@ -233,94 +238,30 @@
 													    </div>
 													</div>
 												</div>
-											</td>
-											<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia</td>
-											<td>fannyaulia@gmail.com</td>
-											<td>Jomblo</td>
-											<td>Kebersihan</td>
-											<td>Banyak sampah plastik berserakan</td>
-											<td>
-												<select class="form-control select">
-											  		<option>Pending</option>
-											  		<option>Diproses</option>
-											  		<option>Selesai</option>
-												</select>
-											</td>
-											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+												<!-- Modal Detail -->
+
+												<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 													    <div class="modal-content">
 													      	<div class="modal-header">
 													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
+													        	<h4 class="modal-title" id="detailModalLabel">Tambah User</h4>
 													      	</div>
 													      	<div class="modal-body">
 													        <form>
-													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													         	</div>
-													         	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													          	</div>
 													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+													          	<div class="modal-footer">
+													        		<button type="button" class="btn btn-default batal" data-dismiss="modal" style="margin-left:0px;">Batal</button>
+													      		</div>
 													        </form>
-													      	</div>
-													      	<div class="modal-footer">
-													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<button type="button" class="btn btn-default">Kirim</button>
 													      	</div>
 													    </div>
 													</div>
 												</div>
-											</td>
-											<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia</td>
-											<td>fannyaulia@gmail.com</td>
-											<td>Jomblo</td>
-											<td>Kebersihan</td>
-											<td>Banyak sampah plastik berserakan</td>
-											<td>
-												<select class="form-control select">
-											  		<option>Pending</option>
-											  		<option>Diproses</option>
-											  		<option>Selesai</option>
-												</select>
-											</td>
-											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#exampleModal" data-whatever="">Lapor</button>
-												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-													    <div class="modal-content">
-													      	<div class="modal-header">
-													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="exampleModalLabel">Tambah User</h4>
-													      	</div>
-													      	<div class="modal-body">
-													        <form>
-													          	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													         	</div>
-													         	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													          	</div>
-													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        </form>
-													      	</div>
-													      	<div class="modal-footer">
-													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<button type="button" class="btn btn-default">Kirim</button>
-													      	</div>
-													    </div>
-													</div>
-												</div>
+
+												<!-- Modal Detail End-->
+
 											</td>
 										</tr>
 									</table>
@@ -375,13 +316,25 @@
 
 		<!-- Modal -->
 		<script>
-		$('#exampleModal').on('show.bs.modal', function (event) {
+		$('#laporModal').on('show.bs.modal', function (event) {
 		  	var button = $(event.relatedTarget) // Button that triggered the modal
 		  	var recipient = button.data('whatever') // Extract info from data-* attributes
 		  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 		  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 		  	var modal = $(this)
 		  	modal.find('.modal-title').text('Kirim Email Laporan')
+		  	modal.find('.modal-body input').val()
+		})
+		</script>
+
+		<script>
+		$('#detailModal').on('show.bs.modal', function (event) {
+		  	var button = $(event.relatedTarget) // Button that triggered the modal
+		  	var recipient = button.data('whatever') // Extract info from data-* attributes
+		  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		  	var modal = $(this)
+		  	modal.find('.modal-title').text('Detail Pengaduan')
 		  	modal.find('.modal-body input').val()
 		})
 		</script>

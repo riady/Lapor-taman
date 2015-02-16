@@ -173,13 +173,11 @@ td {
 .btn.btn-default.lapor {
 	background-color: #73dac5;
 	color: #999999;
-	margin-left: 10px;
 }
 
 .btn.btn-default.lapor:hover {
 	background-color: #73dac5;
 	color: #ffffff;
-	margin-left: 10px;
 }
 
 .select.form-control {
@@ -278,4 +276,8 @@ a:focus {
 
 .section.pengaturan-user {
 	padding-bottom: 40px;
+}
+
+.btn.btn-default.detail {
+	margin-top: 10px;
 }
