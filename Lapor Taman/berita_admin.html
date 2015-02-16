@@ -178,8 +178,54 @@
 							<h6 type="date">16 Februari 2015</h6>
 							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum.</p>
 							<p>
-                  				<a href="#">Edit</a> | <a href="#">Hapus</a>
+                  				<a href="#" data-toggle="modal" data-target="#edit-beritaModal" data-whatever="">Edit</a> | <a href="#">Hapus</a>
                 			</p>
+                			<div class="modal fade" id="edit-beritaModal" tabindex="-1" role="dialog" aria-labelledby="edit-beritaModalLabel" aria-hidden="true">
+					  			<div class="modal-dialog">
+					    			<div class="modal-content">
+					      				<div class="modal-header">
+					        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        				<h4 class="modal-title" id="edit-beritaModalLabel">Edit Berita</h4>
+					      				</div>
+						     			<div class="modal-body">
+									        <form>
+							          			<div class="form-group">
+									            	<label for="judul" class="control-label">Judul:</label>
+									            	<input type="text" class="form-control">
+							         			</div>
+							         			<div class="form-group">
+									            	<label for="tanggal" class="control-label">Tanggal:</label>
+									            	<input type="date" class="form-control">
+							          			</div>
+							          			<div class="form-group">
+									            	<label for="kategori" class="control-label">Kategori:</label>
+									            	<select type="text" class="form-control">
+									            		<option>Kategori 1</option>
+														<option>Kategori 2</option>
+														<option>Kategori 3</option>
+									            	</select>
+							          			</div>
+							          			<div class="form-group">
+									            	<label for="taman" class="control-label">Taman:</label>
+									            	<select type="text" class="form-control">
+									            		<option>Taman 1</option>
+														<option>Taman 2</option>
+														<option>Taman 3</option>
+									            	</select>
+							          			</div>
+									          	<div class="form-group">
+									            	<label for="berita" class="control-label">Berita:</label>
+									            	<textarea type="text" class="form-control berita"></textarea> 
+									          	</div>
+									          	<div class="modal-footer">
+								        			<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
+								        			<button type="button" class="btn btn-default">Simpan</button>
+								      			</div>
+						        			</form>
+						      			</div>
+					    			</div>
+					  			</div>
+							</div>
 						</div>
 						<div class="news">
 							<h2 id="title-news" class="title news">Lorem Ipsum</h2>
@@ -267,6 +313,18 @@
 		  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 		  	var modal = $(this)
 		  	modal.find('.modal-title').text('Tambah Berita')
+		  	modal.find('.modal-body input').val()
+		})
+		</script>
+
+		<script>
+		$('#edit-beritaModal').on('show.bs.modal', function (event) {
+		  	var button = $(event.relatedTarget) // Button that triggered the modal
+		  	var recipient = button.data('whatever') // Extract info from data-* attributes
+		  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		  	var modal = $(this)
+		  	modal.find('.modal-title').text('Edit Berita')
 		  	modal.find('.modal-body input').val()
 		})
 		</script>
