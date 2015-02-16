@@ -8,7 +8,10 @@
 	@mysql_select_db("lapor_tamanbdg") or die( "Unable to select database");
 	$query = "SELECT * FROM t_admin";
 	$result = mysql_query($query);
+	$query = "SELECT * FROM t_taman";
+	$result2 = mysql_query($query);
 	$jumuser = mysql_numrows($result);
+	$jumtaman = mysql_numrows($result2);
 ?>
 	<head>
 		<meta charset="utf-8">
@@ -175,7 +178,7 @@
 												echo '<td>'.$username.'</td>';
 												echo '<td>'.$password.'</td>';
 												echo '<td>'.$alamat.'</td>';
-												echo '<td>'.$email.'</td>';
+												echo '<td>'.$email.'</td>';	
 												echo '<td>'.$telpon.'</td>';
 												echo '</tr>';
 											}
@@ -307,90 +310,36 @@
 											<th>Alamat</th>
 											<th>Admin</th>
 										</tr>
-										<tr>
-											<td>
-												<input type="checkbox" id="blankCheckox" value="option1">
-											</td>
-											<td>
-												<a href="#" data-toggle="modal" data-target="#edit-tamanModal" data-whatever="">
-													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-												</a>
-											</td>
-											<td>Tmn01</td>
-											<td>Pasupati</td>
-											<td>Jl. Pasupati 1</td>
-											<td>Adm01</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="checkbox" id="blankCheckox" value="option1">
-											</td>
-											<td>
-												<a href="#" data-toggle="modal" data-target="#edit-tamanModal" data-whatever="">
-													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-												</a>
-											</td>
-											<td>Tmn01</td>
-											<td>Pasupati</td>
-											<td>Jl. Pasupati 1</td>
-											<td>Adm01</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="checkbox" id="blankCheckox" value="option1">
-											</td>
-											<td>
-												<a href="#" data-toggle="modal" data-target="#edit-tamanModal" data-whatever="">
-													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-												</a>
-											</td>
-											<td>Tmn01</td>
-											<td>Pasupati</td>
-											<td>Jl. Pasupati 1</td>
-											<td>Adm01</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="checkbox" id="blankCheckox" value="option1">
-											</td>
-											<td>
-												<a href="#" data-toggle="modal" data-target="#edit-tamanModal" data-whatever="">
-													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-												</a>
-											</td>
-											<td>Tmn01</td>
-											<td>Pasupati</td>
-											<td>Jl. Pasupati 1</td>
-											<td>Adm01</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="checkbox" id="blankCheckox" value="option1">
-											</td>
-											<td>
-												<a href="#" data-toggle="modal" data-target="#edit-tamanModal" data-whatever="">
-													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-												</a>
-											</td>
-											<td>Tmn01</td>
-											<td>Pasupati</td>
-											<td>Jl. Pasupati 1</td>
-											<td>Adm01</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="checkbox" id="blankCheckox" value="option1">
-											</td>
-											<td>
-												<a href="#" data-toggle="modal" data-target="#edit-tamanModal" data-whatever="">
-													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-												</a>
-											</td>
-											<td>Tmn01</td>
-											<td>Pasupati</td>
-											<td>Jl. Pasupati 1</td>
-											<td>Adm01</td>
-										</tr>
+										
+										<?php 
+											for($i=0 ; $i<$jumuser ; $i++){
+											?>
+											<tr>
+												<td>
+													<input type="checkbox" id="blankCheckox" value="option1">
+												</td>
+												<td>
+													<a href="#" data-toggle="modal" data-target="#editModal" data-whatever="">
+														<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+													</a>
+												</td>
+											<?php
+												$idtaman = mysql_result($result2,$i,"id_taman");
+												$namatmn = mysql_result($result2,$i,"nama");
+												$alamat = mysql_result($result2,$i,"alamat");
+												$id_wenang = mysql_result($result2,$i,"id_berwenang");
+												$query3 = 'SELECT * FROM t_taman JOIN t_admin WHERE t_admin.id_admin='.$id_wenang;
+												$result3 = mysql_query($query3);
+												$namaadmn = mysql_result($result3,0,"t_admin.nama");
+												echo '<td>'.$idtaman.'</td>';
+												echo '<td>'.$namatmn.'</td>';
+												echo '<td>'.$alamat.'</td>';
+												echo '<td>'.$namaadmn.'</td>';
+												echo '</tr>';
+											}
+											?>
+										
+										
 									</table>
 									<div class="modal fade" id="edit-tamanModal" tabindex="-1" role="dialog" aria-labelledby="edit-tamanModalLabel" aria-hidden="true">
 					  					<div class="modal-dialog">
