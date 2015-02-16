@@ -136,6 +136,7 @@
 		<div class="section pengaturan-user clearfix object-non-visible" data-animation-effect="fadeIn">
 			<div class="container">
 				<div class="row">
+					<form method="post" action="del_user.php">
 					<div class="col-md-12">
 						<h1 id="about" class="title text-center admin">Manajemen <span>User</span></h1>
 						<div class="space"></div>
@@ -158,23 +159,23 @@
 										<tr>
 											<?php 
 											for($i=0 ; $i<$jumuser ; $i++){
+												$id = mysql_result($result,$i,"id_admin");
+												$nama = mysql_result($result,$i,"nama");
+												$username = mysql_result($result,$i,"username");
+												$password = mysql_result($result,$i,"password");
+												$alamat = mysql_result($result,$i,"alamat");
+												$email = mysql_result($result,$i,"email");
+												$telpon = mysql_result($result,$i,"no_tlp");
 											?>
 												<td>
-													<input type="checkbox" id="blankCheckox" value="option1">
+													<input type="checkbox" id="check<?php echo $i; ?>" name="check<?php echo $i; ?>" value="<?php echo $id; ?>">
 												</td>
 												<td>
-													<a href="#" data-toggle="modal" data-target="#editModal" data-whatever="">
+													<a href="#" data-toggle="modal" data-target="#editModal<?php echo $id; ?>" data-whatever="">
 														<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 													</a>
 												</td>
 											<?php
-												$id = mysql_result($result,$i,"id_admin");
-												$nama = mysql_result($result,$i,"nama");
-												$username = mysql_result($result,$i,"username");;
-												$password = mysql_result($result,$i,"password");;
-												$alamat = mysql_result($result,$i,"alamat");
-												$email = mysql_result($result,$i,"email");
-												$telpon = mysql_result($result,$i,"no_tlp");
 												echo '<td>'.$id.'</td>';
 												echo '<td>'.$nama.'</td>';
 												echo '<td>'.$username.'</td>';
@@ -185,62 +186,75 @@
 												echo '</tr>';
 											}
 											?>
-											
 									</table>
-									<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-					  					<div class="modal-dialog">
-					    					<div class="modal-content">
-					      						<div class="modal-header">
-					        						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        						<h4 class="modal-title" id="editModalLabel">Edit User</h4>
-					      						</div>
-					      						<div class="modal-body">
-					        						<form>
-											          	<div class="form-group">
-											            	<label for="recipient-name" class="control-label">Nama:</label>
-											            	<input type="text" class="form-control" id="recipient-name">
-											         	</div>
-											         	<div class="form-group">
-											            	<label for="recipient-name" class="control-label">Username:</label>
-											            	<input type="text" class="form-control" id="recipient-name">
-											          	</div>
-											          	<div class="form-group">
-											            	<label for="recipient-name" class="control-label">Password:</label>
-											            	<input type="text" class="form-control" id="recipient-name">
-											          	</div>
-											          	<div class="form-group">
-											            	<label for="recipient-name" class="control-label">Ulangi Password:</label>
-											            	<input type="text" class="form-control" id="recipient-name">
-											          	</div>
-											          	<div class="form-group">
-											            	<label for="recipient-name" class="control-label">Alamat:</label>
-											            	<input type="text" class="form-control" id="recipient-name">
-											          	</div>
-											          	<div class="form-group">
-											            	<label for="recipient-name" class="control-label">Email:</label>
-											            	<input type="text" class="form-control" id="recipient-name">
-											          	</div>
-											          	<div class="form-group">
-											            	<label for="recipient-name" class="control-label">Telpon:</label>
-											            	<input type="text" class="form-control" id="recipient-name">
-											          	</div>
-					        						</form>
-					      						</div>
-					      					<div class="modal-footer">
-					        					<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
-					        					<button type="button" class="btn btn-default">Simpan</button>
-					      					</div>
-					    					</div>
-					  					</div>
-									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="text-center">
+						<input type="hidden" id="sum" name="sum" value="<?php echo $jumuser; ?>">
 						<input type="submit" value="Hapus" class="btn btn-default hapus">
 						<button type="button" class="btn btn-default tambah" data-toggle="modal" data-target="#tambahModal" data-whatever="">Tambah User</button>
 					</div>
+					</form>
+					<?php 
+					for($i=0 ; $i<$jumuser ; $i++){
+						$id = mysql_result($result,$i,"id_admin");
+						$nama = mysql_result($result,$i,"nama");
+						$username = mysql_result($result,$i,"username");
+						$password = mysql_result($result,$i,"password");
+						$alamat = mysql_result($result,$i,"alamat");
+						$email = mysql_result($result,$i,"email");
+						$telpon = mysql_result($result,$i,"no_tlp");
+					?>
+					<div class="modal fade" id="editModal<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<form method="post" onsubmit="return validate();" action="edit_user.php">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="editModalLabel">Edit User</h4>
+								</div>
+								<div class="modal-body">
+										<input type="hidden" id="id_user" name="id_user" value="<?php echo $id; ?>">
+										<div class="form-group">
+											<label for="recipient-name" class="control-label">Nama:</label>
+											<input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama; ?>">
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="control-label">Username:</label>
+											<input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="control-label">Password:</label>
+											<input type="text" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="control-label">Ulangi Password:</label>
+											<input type="text" class="form-control" id="passwordrep" name="passwordrep" value="<?php echo $password; ?>">
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="control-label">Alamat:</label>
+											<input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $alamat; ?>">
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="control-label">Email:</label>
+											<input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="control-label">Telpon:</label>
+											<input type="text" class="form-control" id="telpon" name="telpon" value="<?php echo $telpon; ?>">
+										</div>
+								</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
+								<input type="submit" class="btn btn-default" value="Simpan">
+							</div>
+							</div>
+							</form>
+						</div>
+					</div>
+					<?php } ?>
 					<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
 					  <form method="post" onsubmit="return validate();" action="add_user.php">
@@ -305,6 +319,7 @@
 						<h1 id="about" class="title text-center admin">Manajemen <span>Taman</span></h1>
 						<div class="space"></div>
 						<div class="row">
+							<form method="post" action="del_taman.php">
 							<div class="col-md-12">
 								<div class="table-responsive">
 									<table class="table table-striped">
@@ -316,27 +331,26 @@
 											<th>Alamat</th>
 											<th>Admin</th>
 										</tr>
-										
 										<?php 
-											for($i=0 ; $i<$jumtaman ; $i++){
-											?>
+										for($i=0 ; $i<$jumtaman ; $i++){
+											$idtaman = mysql_result($result2,$i,"id_taman");
+											$namatmn = mysql_result($result2,$i,"nama");
+											$alamat = mysql_result($result2,$i,"alamat");
+											$id_wenang = mysql_result($result2,$i,"id_berwenang");
+											$query3 = 'SELECT * FROM t_taman JOIN t_admin WHERE t_admin.id_admin='.$id_wenang;
+											$result3 = mysql_query($query3);
+											$namaadmn = mysql_result($result3,0,"t_admin.nama");
+										?>
 											<tr>
-												<td>
-													<input type="checkbox" id="blankCheckox" value="option1">
-												</td>
-												<td>
-													<a href="#" data-toggle="modal" data-target="#editModal" data-whatever="">
-														<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-													</a>
-												</td>
+											<td>
+												<input type="checkbox" id="check<?php echo $i; ?>" name="check<?php echo $i; ?>" value="<?php echo $idtaman; ?>">
+											</td>
+											<td>
+												<a href="#" data-toggle="modal" data-target="#edit-tamanModal<?php echo $idtaman; ?>" data-whatever="">
+													<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+												</a>
+											</td>
 											<?php
-												$idtaman = mysql_result($result2,$i,"id_taman");
-												$namatmn = mysql_result($result2,$i,"nama");
-												$alamat = mysql_result($result2,$i,"alamat");
-												$id_wenang = mysql_result($result2,$i,"id_berwenang");
-												$query3 = 'SELECT * FROM t_taman JOIN t_admin WHERE t_admin.id_admin='.$id_wenang;
-												$result3 = mysql_query($query3);
-												$namaadmn = mysql_result($result3,0,"t_admin.nama");
 												echo '<td>'.$idtaman.'</td>';
 												echo '<td>'.$namatmn.'</td>';
 												echo '<td>'.$alamat.'</td>';
@@ -344,77 +358,86 @@
 												echo '</tr>';
 											}
 											?>
-										
-										
 									</table>
-									<div class="modal fade" id="edit-tamanModal" tabindex="-1" role="dialog" aria-labelledby="edit-tamanModalLabel" aria-hidden="true">
-					  					<div class="modal-dialog">
-					    					<form method="post" onsubmit="" action="add_taman.php">
-											<div class="modal-content">
-					      						<div class="modal-header">
-					        						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        						<h4 class="modal-title" id="edit-tamanModalLabel">Edit User</h4>
-					      						</div>
-					      						<div class="modal-body">
-					        						
-											          	<div class="form-group">
-											            	<label for="nama-taman" class="control-label">Nama:</label>
-											            	<input type="text" class="form-control" name="namataman">
-											         	</div>
-											         	<div class="form-group">
-											            	<label for="alamat-taman" class="control-label">Alamat:</label>
-											            	<input type="text" class="form-control" name="alamattaman">
-											          	</div>
-											          	<div class="form-group">
-											            	<label for="admin-taman" class="control-label">Admin:</label>
-											            	<input type="text" class="form-control" name="admin">
-											          	</div>
-					        						
-					      						</div>
-					      					<div class="modal-footer">
-					        					<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
-					        					<button type="button" class="btn btn-default">Simpan</button>
-					      					</div>
-					    					</div>
-											</form>
-					  					</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="text-center">
+						<input type="hidden" id="sum" name="sum" value="<?php echo $jumtaman; ?>">
 						<input type="submit" value="Hapus" class="btn btn-default hapus">
 						<button type="button" class="btn btn-default tambah" data-toggle="modal" data-target="#tambah-tamanModal" data-whatever="">Tambah Taman</button>
 					</div>
+					</form>
+					<?php 
+					for($i=0 ; $i<$jumtaman ; $i++){
+						$idtaman = mysql_result($result2,$i,"id_taman");
+						$namatmn = mysql_result($result2,$i,"nama");
+						$alamat = mysql_result($result2,$i,"alamat");
+						$id_wenang = mysql_result($result2,$i,"id_berwenang");
+						$query3 = 'SELECT * FROM t_taman JOIN t_admin WHERE t_admin.id_admin='.$id_wenang;
+						$result3 = mysql_query($query3);
+						$namaadmn = mysql_result($result3,0,"t_admin.nama");
+					?>
+					<div class="modal fade" id="edit-tamanModal<?php echo $idtaman; ?>" tabindex="-1" role="dialog" aria-labelledby="edit-tamanModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<form method="post" onsubmit="" action="edit_taman.php">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="edit-tamanModalLabel">Edit User</h4>
+								</div>
+								<div class="modal-body">
+									<input type="hidden" id="id_taman" name="id_taman" value="<?php echo $idtaman; ?>">
+									<div class="form-group">
+										<label for="nama-taman" class="control-label">Nama:</label>
+										<input type="text" class="form-control" id="nama-taman"  name="namataman" value="<?php echo $namatmn; ?>">
+									</div>
+									<div class="form-group">
+										<label for="alamat-taman" class="control-label">Alamat:</label>
+										<input type="text" class="form-control" id="alamat-taman" name="alamattaman" value="<?php echo $alamat; ?>">
+									</div>
+									<div class="form-group">
+										<label for="admin" class="control-label">Admin:</label>
+										<input type="text" class="form-control" id="admin-taman" name="admin" value="<?php echo $namaadmn; ?>">
+									</div>
+								</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
+								<button type="button" class="btn btn-default">Simpan</button>
+							</div>
+							</div>
+							</form>
+						</div>
+					</div>
+					<?php } ?>
 					<div class="modal fade" id="tambah-tamanModal" tabindex="-1" role="dialog" aria-labelledby="tambah-tamanModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
 						<form method="post" onsubmit="" action="add_taman.php">
 					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					        <h4 class="modal-title" id="tambah-tamanModalLabel">Tambah Taman</h4>
-					      </div>
-					      <div class="modal-body">
-					        
-					          	<div class="form-group">
-					            	<label for="nama-taman" class="control-label">Nama:</label>
-					            	<input type="text" class="form-control" id="nama-taman"  name="namataman">
-					         	</div>
-					         	<div class="form-group">
-					            	<label for="alamat-taman" class="control-label">Alamat:</label>
-					            	<input type="text" class="form-control" id="alamat-taman" name="alamattaman">
-					          	</div>
-					          	<div class="form-group">
-					            	<label for="admin" class="control-label">Admin:</label>
-					            	<input type="text" class="form-control" id="admin-taman" name="admin">
-					          	</div>
-					        
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
-					        <input type="submit" class="btn btn-default" value="Simpan">
-					      </div>
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="tambah-tamanModalLabel">Tambah Taman</h4>
+							</div>
+							<div class="modal-body">
+								<div class="form-group">
+									<label for="nama-taman" class="control-label">Nama:</label>
+									<input type="text" class="form-control" id="nama-taman"  name="namataman">
+								</div>
+								<div class="form-group">
+									<label for="alamat-taman" class="control-label">Alamat:</label>
+									<input type="text" class="form-control" id="alamat-taman" name="alamattaman">
+								</div>
+								<div class="form-group">
+									<label for="admin" class="control-label">Admin:</label>
+									<input type="text" class="form-control" id="admin-taman" name="admin">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
+								<input type="submit" class="btn btn-default" value="Simpan">
+							</div>
 					    </div>
 						</form>
 					  </div>
