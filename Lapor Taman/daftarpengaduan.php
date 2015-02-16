@@ -186,21 +186,23 @@
 													        	<h4 class="modal-title" id="laporModalLabel">Kirim Email Laporan</h4>
 													      	</div>
 													      	<div class="modal-body">
-													        <form>
-													          	<div class="form-group">
+													          	<!--<div class="form-group">
 													            	<label for="recipient-name" class="control-label">Email:</label>
 													            	<input type="text" class="form-control" id="recipient-name">
 													         	</div>
 													         	<div class="form-group">
 													            	<label for="recipient-name" class="control-label">Subjek:</label>
 													            	<input type="text" class="form-control" id="recipient-name">
-													          	</div>
-													          	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-													        </form>
+													          	</div>-->
+													          	<p>Anda yakin akan mengirim laporan?</p>
 													      	</div>
 													      	<div class="modal-footer">
+													        <form method="post" action="sentemail.php">
 													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-													        	<button type="button" class="btn btn-default">Kirim</button>
+																<input type="hidden" name="id_pengaduan" id="id_pengaduan" value="<?php echo $res['id_pengaduan']; ?>">
+																<!--<button type="button" class="btn btn-default">Kirim</button>-->
+																<input type="submit" name="submit" value="Kirim" class="btn btn-default">
+													        </form>
 													      	</div>
 													    </div>
 													</div>
