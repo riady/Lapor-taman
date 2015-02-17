@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 16, 2015 at 12:58 PM
+-- Generation Time: Feb 17, 2015 at 04:22 AM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -137,6 +137,20 @@ INSERT INTO `t_instansi` (`id_instansi`, `nama`, `email`) VALUES
 (3, 'Divisi Daun Kota Bandung', 'daun@pemkotbdg.org'),
 (4, 'Divisi Batang Kota Bandung', 'batang@pemkotbdg.org'),
 (5, 'Divisi Bunga Kota Bandung', 'bunga@pemkotbdg.org');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_notif`
+--
+
+CREATE TABLE IF NOT EXISTS `t_notif` (
+  `id_notif` int(11) NOT NULL AUTO_INCREMENT,
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `konten` text NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_notif`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
