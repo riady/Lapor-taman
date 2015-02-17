@@ -53,12 +53,33 @@
 		    	$adu_taman = mysqli_real_escape_string($con,$_POST['taman2']);
 		    	$adu_kategori = mysqli_real_escape_string($con,$_POST['kategori2']);
 
+		    	if ($adu_kategori == "0") {
+		    		$notif_kategori = "kebersihan";
+		    	} else {
+		    		if ($adu_kategori == "1") {
+		    			$notif_kategori = "fasilitas";
+		    		} else {
+		    			if ($adu_kategori == "2") {
+		    				$notif_kategori = "keamanan";
+		    			}
+		    		}
+		    	}
+				$listNotifTaman = mysqli_query($con, "SELECT nama FROM t_taman WHERE id_taman = ".$adu_taman."");
+				$notif_taman = mysqli_fetch_assoc($listNotifTaman);
+		    	$notif_konten = $adu_nama." mengadukan tentang ".$notif_kategori." di ".$notif_taman['nama'];
+
 		    	$adu_query = "INSERT INTO t_adu (nama_pengadu, email_pengadu, kategori, konten, id_mengenai)
                   VALUES ('$adu_nama', '$adu_email','$adu_kategori', '$adu_message', '$adu_taman')";
+                $notif_query = "INSERT INTO t_notif (konten) VALUES ('$notif_konten')";
 		    	
-		    	if (!mysqli_query ($con, $adu_query)) {
+		    	if (!mysqli_query($con, $adu_query)) {
 		            die('Error: ' . mysqli_error($con));
 		        }
+
+		        if (!mysqli_query($con, $notif_query)) {
+		            die('Error: ' . mysqli_error($con));
+		        }
+
 		    }
 
 		?>
@@ -248,7 +269,7 @@
 					<h1 class="title text-center" id="contact">Adukan!</h1>
 					<div class="row">
 							<div class="footer-content">
-								<form role="form" id="footer-form" method="POST" action="index.php">
+								<form role="form" id="footer-form" method="POST" action="index.php" onSubmit="submitSuccess()">
 									<div class="form-group has-feedback">
 										<label class="sr-only" for="name2">Nama</label>
 										<input type="text" class="form-control" id="name2" placeholder="Nama" name="name2" required>
@@ -278,7 +299,7 @@
 										<select class="form-control" name="kategori2">
 											<option value="0">Kategori Kebersihan</option>
 											<option value="1">Kategori Fasilitas</option>
-											<option value="2">Kategori Kategori Keamanan</option>
+											<option value="2">Kategori Keamanan</option>
 										</select>										
 									</div>
 									<div class="form-group has-feedback">
@@ -287,7 +308,7 @@
 										<i class="fa fa-pencil form-control-feedback"></i>
 									</div>
 									<div class="text-center">
-										<input type="submit" value="Kirim" class="btn btn-default" onclick="submitSuccess()">
+										<input type="submit" value="Kirim" class="btn btn-default">
 									</div>
 								</form>
 							</div>
