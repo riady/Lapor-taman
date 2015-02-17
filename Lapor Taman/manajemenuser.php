@@ -207,7 +207,7 @@
 					?>
 					<div class="modal fade" id="editModal<?php echo $id; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
-							<form method="post" onsubmit="return validate();" action="edit_user.php">
+							<form method="post" onsubmit="return validate(<?php echo $id; ?>);" action="edit_user.php">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -217,31 +217,31 @@
 										<input type="hidden" id="id_user" name="id_user" value="<?php echo $id; ?>">
 										<div class="form-group">
 											<label for="recipient-name" class="control-label">Nama:</label>
-											<input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama; ?>">
+											<input type="text" class="form-control" id="nama<?php echo $id; ?>" name="nama" value="<?php echo $nama; ?>">
 										</div>
 										<div class="form-group">
 											<label for="recipient-name" class="control-label">Username:</label>
-											<input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
+											<input type="text" class="form-control" id="username<?php echo $id; ?>" name="username" value="<?php echo $username; ?>">
 										</div>
 										<div class="form-group">
 											<label for="recipient-name" class="control-label">Password:</label>
-											<input type="password" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
+											<input type="password" class="form-control" id="password<?php echo $id; ?>" name="password" value="<?php echo $password; ?>">
 										</div>
 										<div class="form-group">
 											<label for="recipient-name" class="control-label">Ulangi Password:</label>
-											<input type="password" class="form-control" id="passwordrep" name="passwordrep" value="<?php echo $password; ?>">
+											<input type="password" class="form-control" id="passwordrep<?php echo $id; ?>" name="passwordrep" value="<?php echo $password; ?>">
 										</div>
 										<div class="form-group">
 											<label for="recipient-name" class="control-label">Alamat:</label>
-											<input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $alamat; ?>">
+											<input type="text" class="form-control" id="alamat<?php echo $id; ?>" name="alamat" value="<?php echo $alamat; ?>">
 										</div>
 										<div class="form-group">
 											<label for="recipient-name" class="control-label">Email:</label>
-											<input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
+											<input type="text" class="form-control" id="email<?php echo $id; ?>" name="email" value="<?php echo $email; ?>">
 										</div>
 										<div class="form-group">
 											<label for="recipient-name" class="control-label">Telpon:</label>
-											<input type="text" class="form-control" id="telpon" name="telpon" value="<?php echo $telpon; ?>">
+											<input type="text" class="form-control" id="telpon<?php echo $id; ?>" name="telpon" value="<?php echo $telpon; ?>">
 										</div>
 								</div>
 							<div class="modal-footer">
@@ -255,7 +255,7 @@
 					<?php } ?>
 					<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
-					  <form method="post" onsubmit="return validate();" action="add_user.php">
+					  <form method="post" onsubmit="return validate(x);" action="add_user.php">
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -266,31 +266,31 @@
 					        
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Nama:</label>
-					            	<input type="text" class="form-control" id="nama" name="nama">
+					            	<input type="text" class="form-control" id="namax" name="nama">
 					         	</div>
 					         	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Username:</label>
-					            	<input type="text" class="form-control" id="username" name="username">
+					            	<input type="text" class="form-control" id="usernamex" name="username">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Password:</label>
-					            	<input type="password" class="form-control" id="password" name="password">
+					            	<input type="password" class="form-control" id="passwordx" name="password">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Ulangi Password:</label>
-					            	<input type="password" class="form-control" id="passwordrep" name="passwordrep">
+					            	<input type="password" class="form-control" id="passwordrepx" name="passwordrep">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Alamat:</label>
-					            	<input type="text" class="form-control" id="alamat" name="alamat">
+					            	<input type="text" class="form-control" id="alamatx" name="alamat">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Email:</label>
-					            	<input type="text" class="form-control" id="email" name="email">
+					            	<input type="text" class="form-control" id="emailx" name="email">
 					          	</div>
 					          	<div class="form-group">
 					            	<label for="recipient-name" class="control-label">Telpon:</label>
-					            	<input type="text" class="form-control" id="telpon" name="telpon">
+					            	<input type="text" class="form-control" id="telponx" name="telpon">
 					          	</div>
 					        
 					      </div>
@@ -327,7 +327,7 @@
 											<th style="width:13%">ID Taman</th>
 											<th>Nama</th>
 											<th>Alamat</th>
-											<th>Admin</th>
+											<th>Instansi</th>
 										</tr>
 										<?php 
 										for($i=0 ; $i<$jumtaman ; $i++){
@@ -335,9 +335,9 @@
 											$namatmn = mysql_result($result2,$i,"nama");
 											$alamat = mysql_result($result2,$i,"alamat");
 											$id_wenang = mysql_result($result2,$i,"id_berwenang");
-											$query3 = 'SELECT * FROM t_taman JOIN t_admin WHERE t_admin.id_admin='.$id_wenang;
+											$query3 = 'SELECT * FROM t_taman JOIN t_instansi WHERE t_instansi.id_instansi='.$id_wenang;
 											$result3 = mysql_query($query3);
-											$namaadmn = mysql_result($result3,0,"t_admin.nama");
+											$namaadmn = mysql_result($result3,0,"t_instansi.nama");
 										?>
 											<tr>
 											<td>
@@ -397,7 +397,7 @@
 										<input type="text" class="form-control" id="alamat-taman" name="alamattaman" value="<?php echo $alamat; ?>">
 									</div>
 									<div class="form-group">
-										<label for="admin" class="control-label">Admin:</label>
+										<label for="admin" class="control-label">Instansi:</label>
 										<input type="text" class="form-control" id="admin-taman" name="admin" value="<?php echo $namaadmn; ?>">
 									</div>
 								</div>
@@ -428,7 +428,7 @@
 									<input type="text" class="form-control" id="alamat-taman" name="alamattaman">
 								</div>
 								<div class="form-group">
-									<label for="admin" class="control-label">Admin:</label>
+									<label for="admin" class="control-label">Instansi:</label>
 									<input type="text" class="form-control" id="admin-taman" name="admin">
 								</div>
 							</div>
@@ -534,15 +534,15 @@
 		})
 		</script>
 		<script>
-		function validate(){
+		function validate(id){
 			var valid = true;
-			var nama = document.getElementById('nama').value;
-			var username = document.getElementById('username').value;
-			var password = document.getElementById('password').value;
-			var passwordrep = document.getElementById('passwordrep').value;
-			var alamat = document.getElementById('alamat').value;
-			var email = document.getElementById('email').value;
-			var telpon = document.getElementById('telpon').value;
+			var nama = document.getElementById('nama'+id).value;
+			var username = document.getElementById('username'+id).value;
+			var password = document.getElementById('password'+id).value;
+			var passwordrep = document.getElementById('passwordrep'+id).value;
+			var alamat = document.getElementById('alamat'+id).value;
+			var email = document.getElementById('email'+id).value;
+			var telpon = document.getElementById('telpon'+id).value;
 			if(nama==""||username==""||password==""||alamat==""||email==""||telpon==""||email==""){
 				alert("form tidak boleh ada yang kosong");
 				return false;
@@ -553,6 +553,8 @@
 			}
 			return valid;
 		}
+		
+		
 		</script>
 	</body>
 </html>
