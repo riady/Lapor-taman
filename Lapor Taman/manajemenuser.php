@@ -255,7 +255,7 @@
 					<?php } ?>
 					<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
-					  <form method="post" onsubmit="return validate(x);" action="add_user.php">
+					  <form method="post" onsubmit="return validate('x');" action="add_user.php">
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -380,25 +380,25 @@
 					?>
 					<div class="modal fade" id="edit-tamanModal<?php echo $idtaman; ?>" tabindex="-1" role="dialog" aria-labelledby="edit-tamanModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
-							<form method="post" onsubmit="" action="edit_taman.php">
+							<form method="post" onsubmit="return validatetmn(<?php echo $idtaman; ?>);" action="edit_taman.php">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="edit-tamanModalLabel">Edit User</h4>
+									<h4 class="modal-title" id="edit-tamanModalLabel">Edit Taman</h4>
 								</div>
 								<div class="modal-body">
 									<input type="hidden" id="id_taman" name="id_taman" value="<?php echo $idtaman; ?>">
 									<div class="form-group">
 										<label for="nama-taman" class="control-label">Nama:</label>
-										<input type="text" class="form-control" id="nama-taman"  name="namataman" value="<?php echo $namatmn; ?>">
+										<input type="text" class="form-control" id="nama-taman<?php echo $idtaman; ?>"  name="namataman" value="<?php echo $namatmn; ?>">
 									</div>
 									<div class="form-group">
 										<label for="alamat-taman" class="control-label">Alamat:</label>
-										<input type="text" class="form-control" id="alamat-taman" name="alamattaman" value="<?php echo $alamat; ?>">
+										<input type="text" class="form-control" id="alamat-taman<?php echo $idtaman; ?>" name="alamattaman" value="<?php echo $alamat; ?>">
 									</div>
 									<div class="form-group">
 										<label for="admin" class="control-label">Instansi:</label>
-										<input type="text" class="form-control" id="admin-taman" name="admin" value="<?php echo $namaadmn; ?>">
+										<input type="text" class="form-control" id="instansi-taman<?php echo $idtaman; ?>" name="instansi" value="<?php echo $namaadmn; ?>">
 									</div>
 								</div>
 							<div class="modal-footer">
@@ -412,7 +412,7 @@
 					<?php } ?>
 					<div class="modal fade" id="tambah-tamanModal" tabindex="-1" role="dialog" aria-labelledby="tambah-tamanModalLabel" aria-hidden="true">
 					  <div class="modal-dialog">
-						<form method="post" onsubmit="" action="add_taman.php">
+						<form method="post" onsubmit="return validatetmn('x');" action="add_taman.php">
 					    <div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -421,15 +421,15 @@
 							<div class="modal-body">
 								<div class="form-group">
 									<label for="nama-taman" class="control-label">Nama:</label>
-									<input type="text" class="form-control" id="nama-taman"  name="namataman">
+									<input type="text" class="form-control" id="nama-tamanx"  name="namataman">
 								</div>
 								<div class="form-group">
 									<label for="alamat-taman" class="control-label">Alamat:</label>
-									<input type="text" class="form-control" id="alamat-taman" name="alamattaman">
+									<input type="text" class="form-control" id="alamat-tamanx" name="alamattaman">
 								</div>
 								<div class="form-group">
 									<label for="admin" class="control-label">Instansi:</label>
-									<input type="text" class="form-control" id="admin-taman" name="admin">
+									<input type="text" class="form-control" id="instansi-tamanx" name="instansi">
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -552,6 +552,18 @@
 				alert("password tidak sama");
 			}
 			return valid;
+		}
+		</script>
+		<script>
+		function validatetmn(id){
+			var nama = document.getElementById('nama-taman'+id).value;
+			var alamat = document.getElementById('alamat-taman'+id).value;
+			var instansi = document.getElementById('instansi-taman'+id).value;
+			if(nama==""||alamat==""||instansi==""){
+				alert("form tidak boleh ada yang kosong");
+				return false;
+			}
+			return true;
 		}
 		
 		
