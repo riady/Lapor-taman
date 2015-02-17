@@ -145,14 +145,13 @@
 		<div class="section clearfix object-non-visible" data-animation-effect="fadeIn">
 			<div class="container">
 				<div class="row">
+					<form method="post" action="edit_adu.php">
 					<div class="col-md-12">
 						<h1 id="about" class="title text-center admin">Daftar <span>Pengaduan</span></h1>
 						<div class="space"></div>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="table-responsive">
-									<form method="post" action="edit_adu.php">
-									<input type="submit" value="Simpan" class="btn btn-default hapus">
 									<table class="table table-striped">
 										<tr>
 											<th>Tanggal</th>
@@ -243,11 +242,14 @@
 										<?php } ?>
 										</tr>
 									</table>
-									</form>
 								</div>
 							</div>
 						</div>
 					</div>
+					<div class="text-center">
+						<input type="submit" value="Simpan" class="btn btn-default">
+					</div>
+					</form>
 				</div>
 			</div>
 		</div>
