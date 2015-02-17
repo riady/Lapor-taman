@@ -42,7 +42,7 @@
 
 		<!-- header start -->
 		<!-- ================ --> 
-		<header class="header fixed clearfix navbar navbar-fixed-top admin">
+		<header class="header fixed clearfix navbar navbar-fixed-top">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4">
@@ -91,18 +91,6 @@
 											</button>
 										</div>
 
-										<!-- Collect the nav links, forms, and other content for toggling -->
-										<div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
-											<ul class="nav navbar-nav navbar-right">
-												<!--<li class="active"><a href="#banner">Beranda</a></li>-->
-												<li class="active"><a href="notifikasi.html">Notifikasi</a></li>
-												<li><a href="daftarpengaduan.php">Daftar Pengaduan</a></li>
-												<li><a href="manajemenuser.php">Pengaturan</a></li>
-												<li><a href="berita_admin.html">Berita</a></li>
-												<li><a href="index-admin.html">Logout</a></li>
-											</ul>
-										</div>
-
 									</div>
 								</nav>
 								<!-- navbar end -->
@@ -119,79 +107,41 @@
 		</header>
 		<!-- header end -->
 
-		<!-- section start -->
+		<!-- banner start -->
 		<!-- ================ -->
-		<div class="section clearfix object-non-visible" data-animation-effect="fadeIn">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<h1 id="about" class="title text-center admin">Notifikasi <span>Pengaduan</span></h1>
-						<div class="space"></div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="table-responsive">
-									<table class="table table-striped">
-										<tr>
-											<th>Tanggal</th>
-											<th>Notifikasi</th>
-										</tr>
-										<tr>
-											<td>16 Februari 2015</td>
-											<td>Achmad Imam mengajukan pengaduan Taman Jomblo</td>
-										</tr>
-										<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia mengajukan pengaduan Taman Pasupati</td>
-										</tr>
-										<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia mengajukan pengaduan Taman Pasupati</td>
-										</tr>
-										<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia mengajukan pengaduan Taman Pasupati</td>
-										</tr>
-										<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia mengajukan pengaduan Taman Pasupati</td>
-										</tr>
-										<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia mengajukan pengaduan Taman Pasupati</td>
-										</tr>
-										<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia mengajukan pengaduan Taman Pasupati</td>
-										</tr>
-										<tr>
-											<td>17 Februari 2015</td>
-											<td>Fanny Aulia mengajukan pengaduan Taman Pasupati</td>
-										</tr>
-									</table>
-								</div>
+		<div id="banner" class="banner">
+			<div class="banner-image"></div>
+			<div class="banner-caption">
+				<div class="container">
+					<div class="row">
+						<form method="post" action="login_handler.php">
+						<div class="col-md-8 col-md-offset-2 object-non-visible" data-animation-effect="fadeIn">
+							<h1 class="text-center">LAPOR <span>TAMAN</span></h1>
+							<div class="form-group has-feedback">
+								<label class="sr-only" for="username">Username</label>
+								<input type="text" class="form-control login" id="username" placeholder="Username" name="username" required>
 							</div>
+							<div class="form-group has-feedback">
+								<label class="sr-only" for="password">Password</label>
+								<input type="password" class="form-control login" id="password" placeholder="Password" name="password" required>
+							</div>
+							<?php 
+								if (isset($_GET['x'])){
+									?>
+									<script type="text/javascript">
+									alert("Username/Password Salah");
+									</script>
+									<?php
+								}
+							?>
+							<input type="submit" value="Login" class="btn btn-default login">
 						</div>
-					</div>
-					<div class="text-center">
-						<input type="submit" value="Lihat" class="btn btn-default lihat">
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- section end -->
-
-			<!-- .subfooter start -->
-			<!-- ================ -->
-			<div class="subfooter">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<p class="text-center">Copyright © 2014 Lapor Taman</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- .subfooter end -->
+		<!-- banner end -->
 
 		</footer>
 		<!-- footer end -->
@@ -199,6 +149,13 @@
 		<!-- JavaScript files placed at the end of the document so the pages load faster
 		================================================== -->
 		<!-- Jquery and Bootstap core js files -->
+		<script type="text/javascript">
+			function submitSuccess() {
+				alert("Username/Password Salah");
+				return true;
+			}
+
+		</script>
 		<script type="text/javascript" src="plugins/jquery.min.js"></script>
 		<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
