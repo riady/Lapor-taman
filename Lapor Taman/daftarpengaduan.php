@@ -121,30 +121,38 @@
 
 		<!-- section start -->
 		<!-- ================ -->
+		<?php
+		$db_loc="localhost";
+		$db_user="root";
+		$db_pass="";
+		$db_name="lapor_tamanbdg";
+		$kateg=["Kebersihan","Kerusakan Fasilitas","Keamanan"];
+		$bulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+		
+		/*$db = new mysqli($db_loc,$db_user,$db_pass,$db_name);
+		if (mysqli_connect_errno()){
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		$result = $db->query("SELECT A.*, B.nama FROM `t_adu`  as A JOIN `t_taman` as B on A.id_mengenai=B.id_taman;");
+		$sum=mysqli_num_rows($result);*/
+		
+		mysql_connect($db_loc,$db_user,$db_pass);
+		@mysql_select_db($db_name) or die( "Unable to select database");
+		$query = "SELECT A.*, B.nama FROM `t_adu`  as A JOIN `t_taman` as B on A.id_mengenai=B.id_taman;";
+		$result = mysql_query($query);
+		$sum = mysql_numrows($result);
+		?>
 		<div class="section clearfix object-non-visible" data-animation-effect="fadeIn">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<h1 id="about" class="title text-center admin">Daftar <span>Pengaduan</span></h1>
-						<!--<p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta officia, aspernatur.</p>-->
 						<div class="space"></div>
-						<?php
-						$db_loc="localhost";
-						$db_user="root";
-						$db_pass="";
-						$db_name="lapor_tamanbdg";
-						$kateg=["Kebersihan","Kerusakan Fasilitas","Keamanan"];
-						$bulan=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-						$db = new mysqli($db_loc,$db_user,$db_pass,$db_name);
-						if (mysqli_connect_errno()){
-							echo "Failed to connect to MySQL: " . mysqli_connect_error();
-						}
-						$result = $db->query("SELECT A.*, B.nama FROM `t_adu`  as A JOIN `t_taman` as B on A.id_mengenai=B.id_taman;");
-						$tp2=mysqli_num_rows($result);
-						?>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="table-responsive">
+									<form method="post" action="edit_adu.php">
+									<input type="submit" value="Simpan" class="btn btn-default hapus">
 									<table class="table table-striped">
 										<tr>
 											<th>Tanggal</th>
@@ -157,57 +165,51 @@
 											<th></th>
 										</tr>
 										<?php
-										if ($tp2>0){
-											while($res = $result->fetch_array(MYSQLI_ASSOC)){ ?>
+										if ($sum>0){
+											?>
+											<input type="hidden" name="sum" id="sum" value="<?php echo $sum; ?>">
+											<?php
+											//$result = $db->query("SELECT A.*, B.nama FROM `t_adu`  as A JOIN `t_taman` as B on A.id_mengenai=B.id_taman;");
+											/*while($res = $result->fetch_array(MYSQLI_ASSOC)){
+												$id_adu=$res['id_pengaduan'];
+												$tanggal=$res['tanggal'];
+												$nama_adu=$res['nama_pengadu'];
+												$email_adu=$res['email_pengadu'];
+												$nama_taman=$res['nama'];
+												$kategori=$res['kategori']-1;
+												$konten=$res['konten'];
+												$status=$res['status'];*/
+											for($i=0 ; $i<$sum ; $i++){
+												$id_adu = mysql_result($result,$i,"id_pengaduan");
+												$tanggal = mysql_result($result,$i,"tanggal");
+												$nama_adu = mysql_result($result,$i,"nama_pengadu");
+												$email_adu = mysql_result($result,$i,"email_pengadu");
+												$nama_taman = mysql_result($result,$i,"nama");
+												$kategori = mysql_result($result,$i,"kategori") -1;
+												$konten = mysql_result($result,$i,"konten");
+												$status = mysql_result($result,$i,"status");
+											?>
 											<tr>
-											<?php $date=strtotime($res['tanggal']); ?>
+											<?php $date=strtotime($tanggal); ?>
 											<td><?php echo "".date('j',$date)." ".$bulan[date('n',$date)-1]." ".date('Y',$date); ?></td>
-											<td><?php echo $res['nama_pengadu']; ?></td>
-											<td><?php echo $res['email_pengadu']; ?></td>
-											<td><?php echo $res['nama']; ?></td>
-											<td><?php echo $kateg[$res['kategori']-1]; ?></td>
-											<td><?php echo mb_strimwidth($res['konten'],0,50,"&hellip;"); ?></td>
+											<td><?php echo $nama_adu; ?></td>
+											<td><?php echo $email_adu; ?></td>
+											<td><?php echo $nama_taman; ?></td>
+											<td><?php echo $kateg[$kategori]; ?></td>
+											<td><?php echo mb_strimwidth($konten,0,50,"&hellip;"); ?></td>
 											<td>
-												<select class="form-control select">
-													<option <?php echo $res['status']==0?"selected":""; ?>>Belum Verifikasi</option>
-													<option <?php echo $res['status']==1?"selected":""; ?>>Pending</option>
-													<option <?php echo $res['status']==2?"selected":""; ?>>Diproses</option>
-													<option <?php echo $res['status']==3?"selected":""; ?>>Selesai</option>
+												<input type="hidden" name="id_adu<?php echo $i; ?>" value="<?php echo $id_adu; ?>">
+												<select class="form-control select" name="stats<?php echo $i; ?>">
+													<option value="0" <?php echo $status==0?"selected":""; ?>>Belum Verifikasi</option>
+													<option value="1" <?php echo $status==1?"selected":""; ?>>Pending</option>
+													<option value="2" <?php echo $status==2?"selected":""; ?>>Diproses</option>
+													<option value="3" <?php echo $status==3?"selected":""; ?>>Selesai</option>
 												</select>
 											</td>
 											<td>
-												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#laporModal<?php echo $res['id_pengaduan']; ?>" data-whatever="">Lapor</button>
-												<button type="button" class="btn btn-default detail" data-toggle="modal" data-target="#detailModal<?php echo $res['id_pengaduan']; ?>" data-whatever="">Detail</button>
-												<div class="modal fade" id="laporModal<?php echo $res['id_pengaduan']; ?>" tabindex="-1" role="dialog" aria-labelledby="laporModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-													    <div class="modal-content">
-													      	<div class="modal-header">
-													        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													        	<h4 class="modal-title" id="laporModalLabel">Kirim Email Laporan</h4>
-													      	</div>
-													      	<div class="modal-body">
-													          	<!--<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Email:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													         	</div>
-													         	<div class="form-group">
-													            	<label for="recipient-name" class="control-label">Subjek:</label>
-													            	<input type="text" class="form-control" id="recipient-name">
-													          	</div>-->
-													          	<p>Anda yakin akan mengirim laporan?</p>
-													      	</div>
-													      	<div class="modal-footer">
-													        <form method="post" action="sentemail.php">
-													        	<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
-																<input type="hidden" name="id_pengaduan" id="id_pengaduan" value="<?php echo $res['id_pengaduan']; ?>">
-																<!--<button type="button" class="btn btn-default">Kirim</button>-->
-																<input type="submit" name="submit" value="Kirim" class="btn btn-default">
-													        </form>
-													      	</div>
-													    </div>
-													</div>
-												</div>
-												<div class="modal fade" id="detailModal<?php echo $res['id_pengaduan']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+												<button type="button" class="btn btn-default lapor" data-toggle="modal" data-target="#laporModal<?php echo $id_adu; ?>" data-whatever="">Lapor</button>
+												<button type="button" class="btn btn-default detail" data-toggle="modal" data-target="#detailModal<?php echo $id_adu; ?>" data-whatever="">Detail</button>
+												<div class="modal fade" id="detailModal<?php echo $id_adu; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 													    <div class="modal-content">
 													      	<div class="modal-header">
@@ -216,8 +218,8 @@
 													      	</div>
 													      	<div class="modal-body">
 													        <form>
-													          	<!-- <p><?php echo $res['email_pengadu']; ?></p>-->
-													          	<p><?php echo $res['konten']; ?></p>
+													          	<!-- <p><?php echo $email_adu; ?></p>-->
+													          	<p><?php echo $konten; ?></p>
 													          	<div class="modal-footer">
 													        		<button type="button" class="btn btn-default batal" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
 													      		</div>
@@ -227,7 +229,7 @@
 													</div>
 												</div>
 											</td>
-												<?php
+											<?php
 											}
 										} else { ?>
 											<tr>
@@ -241,6 +243,7 @@
 										<?php } ?>
 										</tr>
 									</table>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -248,6 +251,52 @@
 				</div>
 			</div>
 		</div>
+		<?php
+		if ($sum>0){
+			/*$result = $db->query("SELECT A.*, B.nama FROM `t_adu`  as A JOIN `t_taman` as B on A.id_mengenai=B.id_taman;");
+			while($res = $result->fetch_array(MYSQLI_ASSOC)){
+				$id_adu=$res['id_pengaduan'];
+				$tanggal=$res['tanggal'];
+				$nama_adu=$res['nama_pengadu'];
+				$email_adu=$res['email_pengadu'];
+				$nama_taman=$res['nama'];
+				$kategori=$res['kategori']-1;
+				$konten=$res['konten'];
+				$status=$res['status'];*/
+			for($i=0 ; $i<$sum ; $i++){
+				$id_adu = mysql_result($result,$i,"id_pengaduan");
+				$tanggal = mysql_result($result,$i,"tanggal");
+				$nama_adu = mysql_result($result,$i,"nama_pengadu");
+				$email_adu = mysql_result($result,$i,"email_pengadu");
+				$nama_taman = mysql_result($result,$i,"nama");
+				$kategori = mysql_result($result,$i,"kategori") -1;
+				$konten = mysql_result($result,$i,"konten");
+				$status = mysql_result($result,$i,"status");
+			?>
+				<div class="modal fade" id="laporModal<?php echo $id_adu; ?>" tabindex="-1" role="dialog" aria-labelledby="laporModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="laporModalLabel">Kirim Email Laporan</h4>
+							</div>
+							<div class="modal-body">
+								<p>Anda yakin akan mengirim laporan?</p>
+							</div>
+							<div class="modal-footer">
+							<form method="post" action="sentemail.php">
+								<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Batal</button>
+								<input type="hidden" name="id_pengaduan" id="id_pengaduan" value="<?php echo $id_adu; ?>">
+								<input type="submit" name="submit" value="Kirim" class="btn btn-default">
+							</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php
+			}
+		}
+		?>
 		<!-- section end -->
 
 			<!-- .subfooter start -->
