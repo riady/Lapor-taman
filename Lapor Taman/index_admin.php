@@ -1,3 +1,9 @@
+<?php
+	if(isset($_COOKIE["currentuser"])) {
+		header("Location: daftarpengaduan.php");
+	} 
+?>
+
 <!DOCTYPE html>
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->

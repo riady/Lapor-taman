@@ -18,9 +18,11 @@
 			}
 		}
 		if ($flag==true){
+			setcookie("currentuser", $user, time()+3600);
 			header("Location: daftarpengaduan.php");
 		} else {
 			header("Location: index_admin.php?x=1");
 		}
 	}
+
 ?>
