@@ -43,7 +43,7 @@
 		<!-- header start -->
 		<!-- ================ --> 
 		<header class="header fixed clearfix navbar navbar-fixed-top admin">
-			<?php include 'header.html'; ?>
+			<?php $header_i=3;include 'header.php'; ?>
 		</header>
 		<!-- header end -->
 
@@ -124,6 +124,12 @@
 											<th class="font-table">Keamanan</th>
 										</tr>
 										<?php
+										if ($sum==0){ ?>
+										<tr>
+											<td colspan=14>Tidak ada pengaduan</td>
+										</tr>
+										<?php
+										} else {
 										for($i=0 ; $i<$sum ; $i++){
 											$tgl_bln = mysql_result($result,$i,"Bulan");
 											$tgl_thn = mysql_result($result,$i,"Tahun");
@@ -144,7 +150,8 @@
 											}
 											?>
 										</tr>
-										<?php } ?>
+										<?php }
+										} ?>
 									</table>
 								</div>
 							</div>

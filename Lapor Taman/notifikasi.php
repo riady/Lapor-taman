@@ -43,7 +43,7 @@
 		<!-- header start -->
 		<!-- ================ --> 
 		<header class="header fixed clearfix navbar navbar-fixed-top admin">
-			<?php include 'header.html'; ?>
+			<?php $header_i=0;include 'header.php'; ?>
 		</header>
 		<!-- header end -->
 

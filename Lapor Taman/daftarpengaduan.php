@@ -43,7 +43,7 @@
 		<!-- header start -->
 		<!-- ================ --> 
 		<header class="header fixed clearfix navbar navbar-fixed-top admin">
-		<?php include 'header.html'; ?>
+		<?php $header_i=1;include 'header.php'; ?>
 		</header>
 		<!-- header end -->
 
@@ -143,13 +143,7 @@
 											}
 										} else { ?>
 											<tr>
-											<td>N/A</td>
-											<td>N/A</td>
-											<td>N/A</td>
-											<td>N/A</td>
-											<td>N/A</td>
-											<td>Belum ada pengaduan</td>
-											<td>N/A</td>
+											<td colspan=8>Belum ada pengaduan</td>
 										<?php } ?>
 										</tr>
 									</table>

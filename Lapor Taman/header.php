@@ -50,10 +50,10 @@
 							<div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
 								<ul class="nav navbar-nav navbar-right">
 									<!--<li class="active"><a href="#banner">Beranda</a></li>-->
-									<li <?php echo $header_i==0?class="active":""; ?>><a href="notifikasi.php">Notifikasi</a></li>
-									<li <?php echo $header_i==1?class="active":""; ?>><a href="daftarpengaduan.php">Daftar Pengaduan</a></li>
-									<li <?php echo $header_i==2?class="active":""; ?>><a href="manajemenuser.php">Pengaturan</a></li>
-									<li <?php echo $header_i==3?class="active":""; ?>><a href="laporan.php">Statistik</a></li>
+									<li <?php echo $header_i==0?"class=\"active\"":""; ?>><a href="notifikasi.php">Notifikasi</a></li>
+									<li <?php echo $header_i==1?"class=\"active\"":""; ?>><a href="daftarpengaduan.php">Daftar Pengaduan</a></li>
+									<li <?php echo $header_i==2?"class=\"active\"":""; ?>><a href="manajemenuser.php">Pengaturan</a></li>
+									<li <?php echo $header_i==3?"class=\"active\"":""; ?>><a href="laporan.php">Statistik</a></li>
 									<li><a href="berita_admin.html">Berita</a></li>
 									<li><a href="logout_handler.php">Logout</a></li>
 								</ul>
