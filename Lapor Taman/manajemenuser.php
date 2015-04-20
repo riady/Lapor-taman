@@ -302,9 +302,9 @@
 						$namatmn = mysql_result($result2,$i,"nama");
 						$alamat = mysql_result($result2,$i,"alamat");
 						$id_wenang = mysql_result($result2,$i,"id_berwenang");
-						$query3 = 'SELECT * FROM t_taman JOIN t_admin WHERE t_admin.id_admin='.$id_wenang;
+						$query3 = 'SELECT * FROM t_taman JOIN t_instansi WHERE t_instansi.id_instansi='.$id_wenang;
 						$result3 = mysql_query($query3);
-						$namaadmn = mysql_result($result3,0,"t_admin.nama");
+						$namaadmn = mysql_result($result3,0,"t_instansi.nama");
 					?>
 					<div class="modal fade" id="edit-tamanModal<?php echo $idtaman; ?>" tabindex="-1" role="dialog" aria-labelledby="edit-tamanModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -331,7 +331,7 @@
 								</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal" style="margin-left:0px;">Tutup</button>
-								<button type="button" class="btn btn-default">Simpan</button>
+								<input type="submit" class="btn btn-default" value="Simpan">
 							</div>
 							</div>
 							</form>
